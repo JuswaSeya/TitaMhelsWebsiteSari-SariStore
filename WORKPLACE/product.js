@@ -11,9 +11,9 @@ const resultCount = document.getElementById("resultCount");
 
 // Check if the logged-in user is an Admin
 const userRole = localStorage.getItem('userRole');
-const isAdmin = userRole ? userRole.toLowerCase() === 'admin' :true;
+// NOTE: Forced to true for testing. Change this back to: userRole ? userRole.toLowerCase() === 'admin' : false;
+const isAdmin = true; 
 
-// Add this to see what it finds in the console
 console.log("Current User Role:", userRole);
 console.log("Is Admin?:", isAdmin);
 
@@ -77,7 +77,14 @@ function render(list) {
           <p class="product-price">
             ${new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(p.price)}
           </p>
-          ${isAdmin ? `<button class="edit-btn" onclick="openModal(${p.id})">Edit</button>` : ''}
+          
+          <!-- UPDATED: Buttons wrapper for Edit and Delete -->
+          ${isAdmin ? `
+            <div class="card-actions">
+              <button class="edit-btn" onclick="openModal(${p.id})">Edit</button>
+              <button class="delete-btn" onclick="deleteProduct(${p.id})">Delete</button>
+            </div>
+          ` : ''}
         </div>
       </article>
     `).join("");
@@ -167,7 +174,29 @@ async function saveProduct() {
     }
 }
 
-// 7. Navigation
+// 7. Delete Logic (NEW)
+async function deleteProduct(id) {
+    if (!isAdmin) return; // Security check
+
+    // Ask for confirmation so they don't delete by accident
+    const confirmDelete = confirm("Are you sure you want to delete this product? This cannot be undone.");
+    if (!confirmDelete) return;
+
+    // Delete from Supabase
+    const { error } = await supabaseClient
+        .from('products')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        alert("Error deleting product: " + error.message);
+    } else {
+        // Success! Reload the list to make it disappear
+        loadProducts();
+    }
+}
+
+// 8. Navigation
 function backBtnFunction() {
   window.location.href = "home.html";
 }

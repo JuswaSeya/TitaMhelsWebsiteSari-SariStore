@@ -324,3 +324,45 @@ body {
   cursor: pointer;
 }
 .save-btn:hover { background: var(--accent-hover); }
+/* ---------- Card Action Buttons ---------- */
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.edit-btn, .delete-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: var(--bg);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+.edit-btn:hover { 
+  background: var(--accent); 
+  color: white; 
+  border-color: var(--accent);
+}
+
+/* Delete Button */
+.delete-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+.delete-btn:hover { 
+  background: #ef4444; 
+  color: white; 
+  border-color: #ef4444;
+}
