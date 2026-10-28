@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link rel="stylesheet" href="product.css" />
+</head>
+<body>
+    <div class="backBtn">
+        <button type="button" onclick="backBtnFunction()">back</button>
+    </div>
+    
+    <header class="header">
+        <h1 class="title">Our Products</h1>
+
+        <form class="search-bar" id="searchForm">
+            <input type="search" id="searchInput" placeholder="Search products by name..." aria-label="Search products" />
+            <button type="submit">Search</button>
+        </form>
+        
+        <!-- This button is hidden by default and only shows for Admins -->
+        <button type="button" id="addProductBtn" class="add-btn" style="display: none;" onclick="openModal()">
+            + Add New Product
+        </button>
+    </header>
+
+    <main class="container">
+        <p class="result-count" id="resultCount"></p>
+        <div id="productGrid"></div>
+        <p class="no-results" id="noResults" hidden>No products found.</p>
+    </main>
+
+    <!-- The Modal (Popup Form) -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Add New Product</h2>
+            
+            <input type="hidden" id="productId">
+            
+            <label>Product Name</label>
+            <input type="text" id="pName" placeholder="e.g. Ligo Sardines 155g">
+            
+            <label>Category</label>
+            <input type="text" id="pCategory" placeholder="e.g. Canned Goods">
+            
+            <label>Price (₱)</label>
+            <input type="number" id="pPrice" step="0.01" placeholder="e.g. 30.00">
+            
+            <label>Image URL</label>
+            <input type="text" id="pImage" placeholder="e.g. images/ligo.jpg">
+            
+            <button type="button" class="save-btn" onclick="saveProduct()">Save Product</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="product.js"></script>
+</body>
+</html>

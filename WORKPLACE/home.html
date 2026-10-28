@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <div class="home-card">
+        <h1>Welcome to the Home Page!</h1>
+        <p>You have successfully logged in as an Admin.</p>
+        
+        <div class="button-group">
+            <!-- Fixed invalid types to type="button" -->
+            <button type="button" class="btn-primary" onclick="product_list_function()">
+                Check Products
+            </button>
+            
+            <button type="button" class="btn-secondary" onclick="backBtnFunction()">
+                Back to Login
+            </button>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>
