@@ -14,25 +14,25 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 async function loginFunction() {
     console.log("Login button clicked! Starting login process...");
 
-    const emailInput = document.getElementById('login').value.trim();
-    const passwordInput = document.getElementById('login-password').value;
-    const roleInput = document.getElementById('login-role').value;
+    const emailDB = document.getElementById('login-email').value.trim();
+    const passwordDB = document.getElementById('login-password').value;
+    const roleDB = document.getElementById('login-role').value;
 
     // Check if inputs are empty
-    if (!emailInput || !passwordInput) {
+    if (!emailDB || !passwordDB) {
         alert("Please enter both email and password.");
         return;
     }
 
-    console.log("Searching database for:", { emailInput, passwordInput, roleInput });
+    console.log("Searching database for:", { emailDB, passwordDB, roleDB });
 
     // Query the database
     const { data, error } = await supabaseClient
         .from('loginDB')
         .select('*')
-        .eq('emailDB', emailInput)
-        .eq('passwordDB', passwordInput)
-        .eq('roleDB', roleInput)
+        .eq('emailDB', emailDB)
+        .eq('passwordDB', passwordDB)
+        .eq('roleDB', roleDB)
         .maybeSingle(); 
 
     // Handle database errors
@@ -54,13 +54,9 @@ async function loginFunction() {
     localStorage.setItem('userRole', data.roleDB);
     localStorage.setItem('userName', data.nameDB);
 
-    if (data.roleDB === 'Admin') {
+    if (data.roleDB === 'ADMIN') {
         window.location.href = "home.html"; 
     } else {
-        window.location.href = "product.html"; 
+        window.location.href = "cashier.html"; 
     }
-}
-
-function loginFunction(){
-    window.location.href= "home.html"
 }

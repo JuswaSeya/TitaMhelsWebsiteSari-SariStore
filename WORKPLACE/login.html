@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+     <!-- Supabase Library (Must be first) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <form id="login_form">
         <h2>Log in</h2>
 
         <!-- Added ID here -->
         <select id="login-role">
-            <option value="Admin">ADMIN</option>
-            <option value="Cashier">CASHIER</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="CASHIER">CASHIER</option>
         </select>
         
-        <input id="login" type="email" placeholder="Email mo" required>
+        <input id="login-email" type="emailInput" placeholder="Email mo" required>
 
         <input id="login-password" type="password" placeholder="Password" required>
 
@@ -30,8 +32,7 @@
 </body>
 </html>
 
-    <!-- Supabase Library (Must be first) -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   
     
     <!-- Your Script (Must be second) -->
     <script src="login.js"></script>
